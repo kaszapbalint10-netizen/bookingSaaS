@@ -1,0 +1,17 @@
+{
+  "name": "Autóbérlési Asszisztens — Schiller stílus",
+  "description": "Rövid, lényegre törő autóbérlési segítség. Kategóriák, dátum, helyszínek, gyors foglalás.",
+  "type": "car-rental",
+  "prompt_file": "prompt.hu.txt",
+  "pricing_file": "pricing.json",
+  "data_file": "data.json",
+  "assets_dir": "images",
+  "features": ["foglalás", "árkalkuláció", "kategória-ajánló"],
+  "quick_actions": [
+    { "label": "🚗 Kategóriák", "message": "Milyen kategóriák vannak?" },
+    { "label": "💰 Árak", "message": "Mennyibe kerül 5 napra egy compact?" },
+    { "label": "📅 Foglalás", "message": "Foglalni szeretnék" },
+    { "label": "📍 Helyszínek", "message": "Hol tudom felvenni és leadni?" }
+  ],
+  "is_active": true
+}

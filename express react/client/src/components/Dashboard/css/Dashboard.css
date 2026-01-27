@@ -1,0 +1,688 @@
+/* Dashboard.css — ALAP STÍLUSOK, DESIGN TOKENS, KÖZÖS ELEMEK */
+
+/* ====== DESIGN TOKENS ====== */
+:root {
+  /* Frosted glass palette */
+  --paper: #04060a;
+  --canvas: #070c12;
+  --panel: rgba(13, 19, 27, 0.7);
+  --elev: rgba(11, 16, 24, 0.82);
+  --surface: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.22);
+  --border-light: rgba(255, 255, 255, 0.14);
+
+  /* text */
+  --text: #f4f8ff;
+  --text-secondary: rgba(244, 248, 255, 0.72);
+  --muted: rgba(244, 248, 255, 0.5);
+
+  /* brand colors */
+  --brand: #8dd3ff;
+  --brand-light: #b1e6ff;
+  --brand-dark: #4fa6da;
+
+  /* states */
+  --success: #57f2c2;
+  --warning: #ffd48f;
+  --error: #ff91b1;
+
+  /* effektek */
+  --radius: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --shadow-card: 0 30px 70px rgba(3, 7, 13, 0.55);
+  --shadow-hover: 0 35px 80px rgba(6, 11, 19, 0.7);
+  --ring: 0 0 0 2px rgba(157, 224, 255, 0.8), 0 0 0 8px rgba(157, 224, 255, 0.15);
+
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
+  --glass-border: rgba(255, 255, 255, 0.28);
+  --glass-highlight: rgba(255, 255, 255, 0.35);
+
+  --gap-sm: 12px;
+  --gap: 18px;
+  --gap-lg: 28px;
+  --transition: 0.25s ease;
+  --transition-fast: 0.16s ease;
+  --bg-gradient-start: #020910;
+  --bg-gradient-end: #0b1f37;
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* 🌙 SÖTÉT MÓD */
+.salon-dashboard.light {
+  --paper: #EDEFF1;
+  --canvas: #E8EBED;
+  --panel: rgba(255, 255, 255, 0.82);
+  --elev: #FFFFFF;
+  --surface: rgba(255, 255, 255, 0.74);
+  --border: #D9DEE3;
+  --border-light: #E6EAEE;
+
+  --text: #1F2427;
+  --text-secondary: #5F666C;
+  --muted: #9AA2AA;
+
+  --brand: #566E63;
+  --brand-light: #667F74;
+  --brand-dark: #4A6156;
+
+  --shadow-card: 0 4px 18px rgba(34, 40, 38, 0.08);
+  --shadow-hover: 0 12px 36px rgba(34, 40, 38, 0.14);
+}
+
+.salon-dashboard.dark {
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --glass-highlight: rgba(255, 255, 255, 0.28);
+}
+
+/* ====== ALAP STÍLUSOK ====== */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+html, body {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, Segoe UI, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.55;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(133, 220, 255, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(196, 149, 255, 0.24), transparent 60%),
+    linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  z-index: -2;
+}
+
+.app {
+  height: 100vh;
+  height: 100dvh;
+} 
+
+.salon-dashboard {
+  position: relative;
+  color: var(--text);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: visible;
+  display: flex;
+  background: transparent;
+}
+
+.salon-dashboard::before {
+  content: none;
+}
+
+.salon-dashboard > :not(.liquid-bg) {
+  position: sticky;
+}
+
+.salon-dashboard > .liquid-bg {
+  position: fixed !important;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.18), transparent 55%);
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* ====== KÖZÖS KOMPONENSEK ====== */
+
+/* Kártyák */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(1px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent);
+  opacity: .6;
+}
+
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Gombok */
+.btn {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(130deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+  color: var(--text);
+  padding: 12px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  box-shadow: 0 18px 45px rgba(5, 10, 18, 0.35);
+}
+
+.btn:hover { 
+  transform: translateY(-1px);
+  box-shadow: 0 25px 50px rgba(4, 8, 14, 0.55);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn:active { 
+  transform: translateY(0); 
+}
+
+.btn:focus-visible { 
+  outline: none; 
+  box-shadow: var(--ring); 
+}
+
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border-style: dashed;
+}
+
+.btn.danger { 
+  background: linear-gradient(135deg, rgba(255, 109, 109, 0.85), rgba(255, 143, 182, 0.75)); 
+  border-color: transparent; 
+  color: #14030b;
+}
+
+/* Form elemek */
+.form-grid input,
+.form-grid select {
+  padding: 14px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(4, 10, 16, 0.6);
+  color: var(--text);
+  font-size: 15px;
+  min-height: 48px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-grid input::placeholder { 
+  color: rgba(255, 255, 255, 0.35); 
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+  outline: none;
+  border-color: rgba(111, 208, 255, 0.65);
+  box-shadow: var(--ring);
+}
+
+/* Typography */
+.title {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  margin-bottom: 8px;
+  margin-top: 3vh;
+  color: var(--text);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* Avatar */
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  color: var(--text);
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Loading */
+.dashboard-loading {
+  display: grid;
+  place-items: center;
+  gap: 14px;
+  height: 100vh;
+  background: var(--paper);
+}
+
+.loading-spinner {
+  font-size: 36px;
+  animation: spin 1.2s linear infinite;
+  color: var(--brand);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Section animations */
+.section {
+  display: none;
+  animation: fadeInUp 0.28s ease-out;
+}
+
+.section.shown {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo text stílus */
+.logo-text {
+  opacity: 0;
+  transition: opacity 0.2s ease 0.1s;
+}
+
+.desktop-sidebar:hover .logo-text {
+  opacity: 1;
+}
+
+/* Opening Hours Specific Styles */
+.opening-hours-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.date-time-picker .card,
+.time-slots-container .card {
+  height: fit-content;
+}
+
+.time-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.form-input,
+.form-select {
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  background: rgba(5, 10, 16, 0.65);
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(94, 123, 107, 0.1);
+}
+
+.time-slot-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  box-shadow: 0 12px 32px rgba(5, 10, 18, 0.3);
+}
+
+.time-slot-item:hover {
+  border-color: rgba(111, 208, 255, 0.6);
+  box-shadow: 0 20px 45px rgba(6, 10, 16, 0.45);
+}
+
+.time-input {
+  width: 120px;
+}
+
+.location-input {
+  flex: 1;
+  min-width: 120px;
+}
+
+.form-select {
+  width: 140px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--text-secondary);
+}
+
+.empty-state p {
+  margin: 0.5rem 0;
+}
+
+.text-muted {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .opening-hours-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .time-slot-item {
+    flex-wrap: wrap;
+  }
+  
+  .time-slot-item .form-select,
+  .time-slot-item .time-input,
+  .time-slot-item .location-input {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .time-inputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .time-slot-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .time-slot-item > * {
+    width: 100%;
+  }
+}
+
+/* Button variaciok */
+.btn.primary {
+  background: var(--brand);
+  color: #051018;
+  border-color: transparent;
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--brand-dark);
+  transform: translateY(-1px);
+}
+
+.btn.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn.danger {
+  background: linear-gradient(135deg, #ff6d6d, #ff8fb6);
+  color: #14030b;
+  border-color: transparent;
+}
+
+.btn.danger:hover:not(:disabled) {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border: 1px dashed var(--border);
+}
+
+.btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Calendar With Time Picker Styles */
+.calendar-time-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.date-input-container {
+  position: relative;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.date-input {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--paper);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.date-input:hover {
+  border-color: var(--brand-light);
+}
+
+.date-text {
+  flex: 1;
+  color: var(--text);
+}
+
+.clear-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.clear-date:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.calendar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  margin-top: 0.5rem;
+  padding: 1rem;
+}
+
+.custom-day-picker {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: var(--brand);
+  --rdp-background-color: var(--bg-hover);
+}
+
+.custom-day-picker .rdp-day {
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.custom-day-picker .rdp-day:hover {
+  background-color: var(--bg-hover);
+}
+
+.custom-day-picker .day-selected {
+  background-color: var(--brand);
+  color: white;
+}
+
+.custom-day-picker .day-today {
+  font-weight: bold;
+  color: var(--brand);
+}
+
+.time-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.time-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.time-input {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--paper);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.time-input:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(94, 123, 107, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .time-inputs {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.calendar-dropdown {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 350px;
+}
+
+/* Dashboard.css - HOZZÁADANDÓ A VÉGÉRE */
+
+/* Felülírjuk a régi KPI stílusokat */
+.kpis {
+  display: none; /* Elrejtjük a régi KPI-kat */
+}
+
+/* Biztosítjuk, hogy az új KPI kártyák jól jelenjenek meg */
+.kpis-grid {
+  display: grid !important;
+}
+
+.kpi-card {
+  background: var(--panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 1.5rem !important;
+}

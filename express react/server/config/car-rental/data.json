@@ -1,0 +1,44 @@
+{
+  "economy": [
+    { "id": 1, "brand": "Fiat", "model": "500", "year": 2023, "features": ["Klíma", "Bluetooth", "Parkolószenzor"], "seats": 4, "image": "/images/car-rental/fiat500.jpg" },
+    { "id": 2, "brand": "Toyota", "model": "Yaris", "year": 2023, "features": ["Klíma", "USB", "Adaptív biztonság"], "seats": 5, "image": "/images/car-rental/yaris.jpg" }
+  ],
+  "compact": [
+    { "id": 3, "brand": "Volkswagen", "model": "Golf", "year": 2023, "features": ["Klíma", "Tempomat", "Touchscreen"], "seats": 5, "image": "/images/car-rental/golf.jpg" },
+    { "id": 4, "brand": "Ford", "model": "Focus", "year": 2023, "features": ["Klíma", "Apple CarPlay", "Biztonsági csomag"], "seats": 5, "image": "/images/car-rental/focus.jpg" }
+  ],
+  "mid-size": [
+    { "id": 5, "brand": "Skoda", "model": "Octavia", "year": 2023, "features": ["Klíma", "Nagy csomagtér", "Adaptív tempomat"], "seats": 5, "image": "/images/car-rental/octavia.jpg" },
+    { "id": 6, "brand": "Audi", "model": "A4", "year": 2023, "features": ["Prémium belső", "Automata", "Asszisztens rendszerek"], "seats": 5, "image": "/images/car-rental/a4.jpg" }
+  ],
+  "suv": [
+    { "id": 7, "brand": "BMW", "model": "X3", "year": 2023, "features": ["Magas ülés", "AWD", "Nagy csomagtér"], "seats": 5, "image": "/images/car-rental/x3.jpg" },
+    { "id": 8, "brand": "Mercedes", "model": "GLC", "year": 2023, "features": ["Kényelmes", "Automata", "Vezetéstámogatás"], "seats": 5, "image": "/images/car-rental/glc.jpg" }
+  ],
+  "pickupLocations": [
+    {
+      "key": "airport",
+      "name": "Reptéri iroda",
+      "address": "1185 Budapest, Liszt Ferenc Nemzetközi Repülőtér, Terminal 2B",
+      "hours": "Minden nap: 08:00–20:00",
+      "phone": "+36 20 858 0530",
+      "email": "booking@schillerrent.hu"
+    },
+    {
+      "key": "hq",
+      "name": "HQ iroda",
+      "address": "1044 Budapest, Váci út 119/C",
+      "hours": "H–Cs: 08:00–17:00, P: 08:00–16:30",
+      "phone": "+36 20 858 0530",
+      "email": "booking@schillerrent.hu"
+    },
+    {
+      "key": "downtown",
+      "name": "Belvárosi iroda",
+      "address": "1133 Budapest, Dráva utca 17.",
+      "hours": "H–P: 7:30–19:30, Szo–V: 8:00–18:00",
+      "phone": "+36 20 858 0530",
+      "email": "booking@schillerrent.hu"
+    }
+  ]
+}

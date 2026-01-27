@@ -1,0 +1,29 @@
+{
+  "name": "Salon App",
+  "short_name": "Salon",
+  "icons": [
+    {
+      "src": "16x16",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "32x32",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "180x180",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "512x512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
+  "display": "standalone"
+}

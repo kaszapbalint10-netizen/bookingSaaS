@@ -1,0 +1,29 @@
+# Configuration & Secrets
+config.json
+.env
+.env.*
+!.env.example
+
+# Service Account Files
+*service_account*.json
+wired-victor*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

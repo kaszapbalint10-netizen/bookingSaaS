@@ -1,0 +1,245 @@
+/* components/Dashboard/sections/DataManagement/DataManagement.css */
+.data-management h2 {
+  margin-bottom: 2rem;
+  color: var(--text);
+  font-size: 1.5rem;
+}
+
+.data-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.data-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.data-section h3 {
+  margin-bottom: 1rem;
+  color: var(--text);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.data-section p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.export-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.export-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 45px rgba(5, 10, 16, 0.4);
+  backdrop-filter: blur(18px);
+}
+
+.export-item h4 {
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.export-item p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.backup-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.backup-info {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 1.5rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 22px 44px rgba(5, 10, 16, 0.4);
+  backdrop-filter: blur(18px);
+}
+
+.backup-info h4 {
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.backup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.backup-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 16px 30px rgba(5, 10, 16, 0.35);
+}
+
+.backup-item span {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.backup-item small {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.privacy-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.privacy-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 18px 32px rgba(5, 10, 16, 0.35);
+}
+
+.privacy-item strong {
+  color: var(--text);
+}
+
+.privacy-item span {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.privacy-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.asset-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.asset-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.asset-upload-card,
+.asset-result-card {
+  padding: 1.5rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 22px 44px rgba(5, 10, 16, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+.asset-upload-card label,
+.asset-upload-card select,
+.asset-upload-card input[type="text"] {
+  width: 100%;
+  color: var(--text);
+}
+
+.asset-upload-card select,
+.asset-upload-card input[type="text"] {
+  margin-top: 0.35rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(5, 12, 18, 0.65);
+}
+
+.file-input {
+  margin-top: 1rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file-input input[type="file"] {
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  padding: 0.75rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+
+.asset-preview {
+  margin: 1rem 0;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.asset-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.asset-result-section {
+  margin-top: 1rem;
+}
+
+.asset-result-section.metadata {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-height: 220px;
+  overflow: auto;
+}
+
+.asset-result-section pre {
+  color: var(--text);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.asset-result-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.asset-result-section li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}

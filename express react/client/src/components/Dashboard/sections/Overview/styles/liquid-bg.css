@@ -1,0 +1,188 @@
+.liquid-bg {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  transform: scaleX(-1);
+  transform-origin: center;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.blob {
+  position: fixed;
+  filter: blur(2px);
+  opacity: 0.85;
+  animation: slow-drift 18s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+.blob-big {
+  width: 90vmax;
+  height: 90vmax;
+  right: -30vmax;
+  bottom: -25vmax;
+  border-radius: 62% 38% 58% 42%;
+  background:
+    radial-gradient(circle at 32% 18%, rgba(255,255,255,0.3) 0, transparent 36%),
+    radial-gradient(circle at 62% 68%,
+      color-mix(in srgb, var(--tone-5) 24%, #0c1118 76%) 0,
+      color-mix(in srgb, var(--tone-1) 18%, #06080e 82%) 70%);
+  box-shadow:
+    -28px -34px 80px rgba(0,0,0,0.78),
+    0 0 26px 6px color-mix(in srgb, var(--tone-6) 85%, rgba(255,255,255,0.08)),
+    0 0 120px 18px color-mix(in srgb, var(--tone-6) 48%, transparent);
+  filter: blur(1px);
+  opacity: 0.9;
+  animation-duration: 20s;
+}
+
+.blob-medium {
+  width: 60vmax;
+  height: 60vmax;
+  left: -28vmax;
+  top: -18vmax;
+  border-radius: 56% 44% 58% 42%;
+  background:
+    radial-gradient(circle at 36% 34%, rgba(255,255,255,0.24) 0, transparent 38%),
+    radial-gradient(circle at 58% 62%,
+      color-mix(in srgb, var(--tone-6) 22%, #0c1118 78%) 0,
+      color-mix(in srgb, var(--tone-2) 20%, #06080e 80%) 70%);
+  box-shadow:
+    16px 24px 68px rgba(0,0,0,0.45),
+    0 0 20px 6px color-mix(in srgb, var(--tone-5) 70%, rgba(255,255,255,0.08)),
+    0 0 90px 14px color-mix(in srgb, var(--tone-5) 40%, transparent);
+  opacity: 0.88;
+  animation-duration: 12s;
+}
+
+.blob-small-a {
+  width: 38vmax;
+  height: 38vmax;
+  right: 14vmax;
+  top: 6vmax;
+  border-radius: 52% 48% 54% 46%;
+  background:
+    radial-gradient(circle at 46% 32%, rgba(255,255,255,0.22) 0, transparent 34%),
+    radial-gradient(circle at 64% 64%,
+      color-mix(in srgb, var(--tone-3) 22%, #0c1118 78%) 0,
+      color-mix(in srgb, var(--tone-1) 18%, #06080e 82%) 70%);
+  box-shadow:
+    -10px -16px 52px rgba(0,0,0,0.38),
+    0 0 18px 5px color-mix(in srgb, var(--tone-4) 70%, rgba(255,255,255,0.08)),
+    0 0 72px 12px color-mix(in srgb, var(--tone-4) 38%, transparent);
+  opacity: 0.86;
+  animation-duration: 16s;
+}
+
+.blob-small-b {
+  width: 30vmax;
+  height: 30vmax;
+  left: -6vmax;
+  bottom: -8vmax;
+  border-radius: 58% 42% 50% 50%;
+  background:
+    radial-gradient(circle at 38% 38%, rgba(255,255,255,0.18) 0, transparent 32%),
+    radial-gradient(circle at 60% 62%,
+      color-mix(in srgb, var(--tone-6) 21%, #0c1118 79%) 0,
+      color-mix(in srgb, var(--tone-2) 18%, #06080e 82%) 68%);
+  box-shadow:
+    10px 14px 46px rgba(0,0,0,0.34),
+    0 0 18px 5px color-mix(in srgb, var(--tone-6) 65%, rgba(255,255,255,0.08)),
+    0 0 66px 12px color-mix(in srgb, var(--tone-6) 36%, transparent);
+  opacity: 0.84;
+  animation-duration: 14s;
+  z-index: -1;
+}
+
+.liquid-bg::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 20% 28%, color-mix(in srgb, var(--tone-6) 85%, rgba(255,255,255,0.04)) 0, transparent 38%),
+    radial-gradient(circle at 78% 68%, color-mix(in srgb, var(--tone-5) 75%, rgba(255,255,255,0.04)) 0, transparent 40%);
+  filter: blur(10px);
+  opacity: 0.72;
+  z-index: 0;
+}
+
+/* Dark theme overrides: sötétebb tónusok, erősebb árnyékok */
+.salon-dashboard.dark .liquid-bg::before {
+  opacity: 0.48;
+  background:
+    radial-gradient(circle at 20% 28%, color-mix(in srgb, var(--tone-2) 28%, #01030a 72%) 0, transparent 26%),
+    radial-gradient(circle at 78% 68%, color-mix(in srgb, var(--tone-3) 24%, #000208 76%) 0, transparent 30%);
+}
+
+.salon-dashboard.dark .blob-big {
+  background:
+    radial-gradient(circle at 32% 18%, rgba(255,255,255,0.12) 0, transparent 28%),
+    radial-gradient(circle at 62% 68%,
+      color-mix(in srgb, var(--tone-5) 14%, #02030a 86%) 0,
+      color-mix(in srgb, var(--tone-1) 10%, #000208 90%) 70%);
+  box-shadow:
+    -28px -34px 110px rgba(0,0,0,0.92),
+    0 0 12px 3px color-mix(in srgb, var(--tone-6) 42%, rgba(255,255,255,0.03)),
+    0 0 120px 10px color-mix(in srgb, var(--tone-6) 18%, transparent);
+  opacity: 0.9;
+}
+
+.salon-dashboard.dark .blob-medium {
+  background:
+    radial-gradient(circle at 36% 34%, rgba(255,255,255,0.1) 0, transparent 26%),
+    radial-gradient(circle at 58% 62%,
+      color-mix(in srgb, var(--tone-6) 12%, #02030a 88%) 0,
+      color-mix(in srgb, var(--tone-2) 10%, #000208 90%) 70%);
+  box-shadow:
+    16px 24px 90px rgba(0,0,0,0.58),
+    0 0 10px 3px color-mix(in srgb, var(--tone-5) 32%, rgba(255,255,255,0.03)),
+    0 0 90px 8px color-mix(in srgb, var(--tone-5) 18%, transparent);
+  opacity: 0.82;
+}
+
+.salon-dashboard.dark .blob-small-a {
+  background:
+    radial-gradient(circle at 46% 32%, rgba(255,255,255,0.08) 0, transparent 24%),
+    radial-gradient(circle at 64% 64%,
+      color-mix(in srgb, var(--tone-3) 12%, #02030a 88%) 0,
+      color-mix(in srgb, var(--tone-1) 10%, #000208 90%) 70%);
+  box-shadow:
+    -10px -16px 68px rgba(0,0,0,0.52),
+    0 0 10px 3px color-mix(in srgb, var(--tone-4) 34%, rgba(255,255,255,0.03)),
+    0 0 70px 8px color-mix(in srgb, var(--tone-4) 18%, transparent);
+  opacity: 0.8;
+}
+
+.salon-dashboard.dark .blob-small-b {
+  background:
+    radial-gradient(circle at 38% 38%, rgba(255,255,255,0.08) 0, transparent 24%),
+    radial-gradient(circle at 60% 62%,
+      color-mix(in srgb, var(--tone-6) 12%, #02030a 88%) 0,
+      color-mix(in srgb, var(--tone-2) 10%, #000208 90%) 68%);
+  box-shadow:
+    10px 14px 60px rgba(0,0,0,0.48),
+    0 0 10px 3px color-mix(in srgb, var(--tone-6) 30%, rgba(255,255,255,0.03)),
+    0 0 62px 8px color-mix(in srgb, var(--tone-6) 16%, transparent);
+  opacity: 0.78;
+}
+
+@keyframes slow-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(3%, -2%, 0) scale(1.02); }
+  100% { transform: translate3d(-2%, 2%, 0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob,
+  .liquid-bg::before {
+    animation: none !important;
+  }
+}

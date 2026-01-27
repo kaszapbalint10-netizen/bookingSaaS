@@ -1,0 +1,482 @@
+/* Apple-style glass calendar */
+.oh-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.oh-shell.blurred .oh-card,
+.oh-shell.blurred .oh-header {
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.oh-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 8px 4px;
+}
+
+.oh-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 4px 0;
+}
+
+.oh-title {
+  font-size: 26px;
+  margin: 0;
+  color: #f6f8ff;
+  letter-spacing: -0.4px;
+  margin-top: 3vh;
+}
+
+.oh-meta {
+  align-self: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(18px);
+}
+
+.oh-card {
+  position: relative;
+  border-radius: 28px;
+  padding: 22px;
+  border: 1px solid var(--glass-border-strong);
+  box-shadow:
+    0 24px 60px rgba(4, 8, 16, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(5px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  overflow: hidden;
+}
+
+.oh-card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.14), transparent 60%);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.oh-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.oh-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f5f7fb;
+}
+
+
+.oh-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8px;
+}
+
+.oh-weekday {
+  padding: 6px 0;
+}
+
+/* Calendar grid (7 columns, fills empty offsets too) */
+.oh-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.oh-day {
+  position: relative;
+  border-radius: 16px;
+  padding: 14px 10px;
+  min-height: 88px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5f7fb;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.oh-day.empty {
+  background: transparent;
+  border: none;
+  cursor: default;
+}
+
+.oh-day:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 16px 40px rgba(4, 8, 16, 0.35);
+}
+
+.oh-day.selected {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 50px rgba(255, 255, 255, 0.18);
+}
+
+.oh-day.today:not(.selected) {
+  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 10px 26px rgba(255, 255, 255, 0.12);
+}
+
+.oh-day-number {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.oh-day-hours {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.3;
+}
+
+.oh-day-break {
+  display: block;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 2px;
+}
+
+.oh-form-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.oh-subtitle {
+  margin: 4px 0 0;
+  color: #f5f7fb;
+  font-size: 18px;
+}
+
+.oh-cta {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+  color: #04101a;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  backdrop-filter: blur(14px);
+}
+
+.oh-cta:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.oh-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+:root {
+  --oh-accent: color-mix(in srgb, var(--tone-6, #8db6ff) 22%, rgba(255, 255, 255, 0.35));
+}
+
+.oh-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.oh-field label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.oh-field input {
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--oh-accent);
+  background: color-mix(in srgb, var(--tone-6, #8db6ff) 12%, rgba(255, 255, 255, 0.06));
+  color: #f5f7fb;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.oh-time-field input {
+  cursor: pointer;
+}
+
+.oh-field input[type="time"] {
+  appearance: none;
+  -webkit-appearance: none;
+  color: #f5f7fb;
+}
+
+.oh-field input[type="time"]::-webkit-datetime-edit {
+  color: #f5f7fb;
+  padding: 0;
+}
+
+.oh-field input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.85);
+  cursor: pointer;
+}
+
+.oh-field input:focus {
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22) !important;
+  outline: none !important;
+}
+
+.oh-time-field {
+  position: relative;
+}
+
+.oh-time-picker {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  max-height: 260px;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 10;
+}
+
+.oh-time-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.oh-time-column {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: rgba(61, 61, 61, 0.911);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.oh-time-column::-webkit-scrollbar { display: none; }
+
+.oh-time-column::before,
+.oh-time-column::after {
+  content: '';
+  position: sticky;
+  left: 0;
+  right: 0;
+  height: 18px;
+  pointer-events: none;
+  z-index: 1;
+}
+.oh-time-column::before {
+  top: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), transparent);
+}
+.oh-time-column::after {
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.35), transparent);
+}
+
+.oh-time-column p {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 6px 8px;
+}
+
+.oh-time-column button {
+  width: 100%;
+  padding: 8px 10px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: #f5f7fb;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.oh-time-column button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.oh-time-column button.is-active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.oh-time-actions {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.oh-time-actions button {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  color: #f5f7fb;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.oh-time-actions button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.oh-break {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.oh-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.oh-check input {
+  width: 16px;
+  height: 16px;
+  border-radius: 6px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: color-mix(in srgb, rgba(255, 255, 255, 0.14) 80%, rgba(0,0,0,0.1));
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.oh-check input:checked {
+  background: color-mix(in srgb, rgba(255, 255, 255, 0.78) 80%, rgba(255, 255, 255, 0.2));
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+
+.oh-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 12, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.oh-modal {
+  width: min(720px, 96%);
+  max-height: 88vh;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border-strong);
+  border-radius: 28px;
+  padding: 22px;
+  box-shadow:
+    0 30px 70px rgba(4, 8, 16, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: #f5f7fb;
+  position: relative;
+  overflow: visible;
+}
+
+.oh-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.oh-ghost {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f5f7fb;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.oh-ghost:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+@media (max-width: 900px) {
+  .oh-card {
+    padding: 18px;
+  }
+  .oh-days {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .oh-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .oh-card {
+    padding: 16px;
+  }
+  .oh-days {
+    gap: 6px;
+  }
+  .oh-day {
+    padding: 8px 6px;
+  }
+}

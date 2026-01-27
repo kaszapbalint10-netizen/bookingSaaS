@@ -1,0 +1,139 @@
+SQL
+
+"salon_{szalon név}"
+	"services":
+		#	Név	Típus	Illesztés	Tulajdonságok	Nulla	Alapértelmezett	Megjegyzések	Extra	Művelet
+		1	service	varchar(100)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+		2	time	int(11)			Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+
+		NINCS BENNE: price (nem kötelező)
+
+	"users":
+		#	Név	Típus	Illesztés	Tulajdonságok	Nulla	Alapértelmezett	Megjegyzések	Extra	Művelet
+		1	user_id Elsődleges	bigint(20)			Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+		2	nev	varchar(255)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+
+		NINCS BENNE: összes folglalás, sikeres foglalás, szalon által lemondott foglalás, vendég által lemondott foglalás
+
+	"opening_hours":
+		#	Név	Típus	Illesztés	Tulajdonságok	Nulla	Alapértelmezett	Megjegyzések	Extra	Művelet
+	1	date	date			Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	2	time_slot_type	enum('OPEN', 'BREAK')	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	3	start_time	time			Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	4	end_time	time			Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	5	location	varchar(100)	utf8mb4_general_ci		Igen	Főszalon			Módosítás Módosítás	Eldobás Eldobás	
+		
+
+	"booings":
+			#	Név	Típus	Illesztés	Tulajdonságok	Nulla	Alapértelmezett	Megjegyzések	Extra	Művelet
+	1	customer_id	int(11)			Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	2	stylist_id	int(11)			Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	3	service	varchar(255)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	4	duration	int(11)			Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	5	booking_date	datetime			Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	6	status	int(11)			Igen	0			Módosítás Módosítás	Eldobás Eldobás	
+	7	price	decimal(10,2)			Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	8	notes	text	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	9	created_at	timestamp			Nem	current_timestamp()			Módosítás Módosítás	Eldobás Eldobás	
+
+
+		
+
+"salon_{szalonnév}_management:
+	"staff":
+		#	Név	Típus	Illesztés	Tulajdonságok	Nulla	Alapértelmezett	Megjegyzések	Extra	Művelet
+		1	id Elsődleges	int(11)			Nem	Nincs		AUTO_INCREMENT	Módosítás Módosítás	Eldobás Eldobás	
+		2	first_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+		3	last_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+		4	email Index	varchar(255)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+		5	password	varchar(255)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+		6	role	enum('owner', 'admin', 'stylist', 'reception')	utf8mb4_general_ci		Igen	owner			Módosítás Módosítás	Eldobás Eldobás	
+		7	email_verified	tinyint(1)			Igen	0			Módosítás Módosítás	Eldobás Eldobás	
+		8	verification_token	varchar(100)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		9	created_at	timestamp			Nem	current_timestamp()			Módosítás Módosítás	Eldobás Eldobás	
+		10	last_login	timestamp			Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		11	is_active	tinyint(1)			Igen	1			Módosítás Módosítás	Eldobás Eldobás	
+
+		
+
+
+"central_salon_management"
+	"staff_directory":
+		
+		Név	Típus	Illesztés	Tulajdonságok	Nulla	Alapértelmezett	Megjegyzések	Extra	Művelet
+		1	id Elsődleges	int(11)			Nem	Nincs		AUTO_INCREMENT	
+		2	email Index	varchar(255)	utf8mb4_general_ci		Nem	Nincs			
+		3	first_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs			
+		4	last_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs				
+		5	salon_db_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs			
+		6	management_db_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs				
+		7	role	enum('owner', 'admin', 'stylist', 'reception', 'un...	utf8mb4_general_ci		Igen	unknown				
+		8	is_active	tinyint(1)			Igen	1			
+		9	created_at	timestamp			Nem	current_timestamp()				
+		10	last_login	timestamp			Igen	NULL	
+
+	"invited_stylists":
+		
+#	Név	Típus	Illesztés	Tulajdonságok	Nulla	Alapértelmezett	Megjegyzések	Extra	Művelet
+	1	id Elsődleges	int(11)			Nem	Nincs		AUTO_INCREMENT	Módosítás Módosítás	Eldobás Eldobás	
+	2	email Index	varchar(255)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	3	invited_by_salon	varchar(100)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	4	salon_db_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	5	management_db_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	6	invited_role	enum('stylist', 'reception')	utf8mb4_general_ci		Igen	stylist			Módosítás Módosítás	Eldobás Eldobás	
+	7	invitation_token Index	varchar(64)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	8	invitation_sent_at	timestamp			Nem	current_timestamp()			Módosítás Módosítás	Eldobás Eldobás	
+	9	invitation_expires_at Index	timestamp			Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	10	is_accepted	tinyint(1)			Igen	0			Módosítás Módosítás	Eldobás Eldobás	
+	11	accepted_at	timestamp			Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+				
+
+"users"
+	"users":
+		#	Név	Típus	Illesztés	Tulajdonságok	Nulla	Alapértelmezett	Megjegyzések	Extra	Művelet
+		1	id Elsődleges	int(11)			Nem	Nincs		AUTO_INCREMENT	Módosítás Módosítás	Eldobás Eldobás	
+		2	email Index	varchar(255)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		3	phone	varchar(20)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		4	password	varchar(255)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		5	first_name	varchar(100)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		6	last_name	varchar(100)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+			7	preferred_chatbot	enum('telegram', 'whatsapp', 'email', 'sms')	utf8mb4_general_ci		Igen	telegram			Módosítás Módosítás	Eldobás Eldobás	
+		8	telegram_chat_id	varchar(100)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		9	whatsapp_number	varchar(20)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		10	meta_data	longtext	utf8mb4_bin		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		11	communication_preferences	longtext	utf8mb4_bin		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		12	created_at	timestamp			Nem	current_timestamp()			Módosítás Módosítás	Eldobás Eldobás	
+		13	last_visit	timestamp			Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+		14	is_active	tinyint(1)			Igen	1			Módosítás Módosítás	Eldobás Eldobás	
+
+	"registered_users":
+			
+#	Név	Típus	Illesztés	Tulajdonságok	Nulla	Alapértelmezett	Megjegyzések	Extra	Művelet
+	1	id Elsődleges	int(11)			Nem	Nincs		AUTO_INCREMENT	Módosítás Módosítás	Eldobás Eldobás	
+	2	first_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	3	last_name	varchar(100)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	4	email Index	varchar(255)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	5	phone Index	varchar(20)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	6	password	varchar(255)	utf8mb4_general_ci		Nem	Nincs			Módosítás Módosítás	Eldobás Eldobás	
+	7	birth_date	date			Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	8	gender	enum('female', 'male', 'other', 'prefer-not-to-say...	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	9	hair_type	enum('Egyenes', 'Göndör', 'Hullámos', 'Vegyes')	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	10	hair_condition	enum('Egészséges', 'Száraz', 'Zsíros', 'Törékeny',...	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	11	allergies	text	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	12	preferences	text	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	13	newsletter	tinyint(1)			Igen	1			Módosítás Módosítás	Eldobás Eldobás	
+	14	created_at	timestamp			Nem	current_timestamp()			Módosítás Módosítás	Eldobás Eldobás	
+	15	last_login	timestamp			Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	16	is_active Index	tinyint(1)			Igen	1			Módosítás Módosítás	Eldobás Eldobás	
+	17	email_verified	tinyint(1)			Igen	0			Módosítás Módosítás	Eldobás Eldobás	
+	18	verification_token	varchar(100)	utf8mb4_general_ci		Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	19	verification_expires	datetime			Igen	NULL			Módosítás Módosítás	Eldobás Eldobás	
+	20	updated_at	timestamp			Nem	current_timestamp()		ON UPDATE CURRENT_TIMESTAMP()	Módosítás Módosítás	Eldobás Eldobás	
+		
+				
+
+		
+
+	
+
+

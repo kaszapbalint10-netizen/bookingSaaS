@@ -1,0 +1,364 @@
+/* CSS Variables - Design System */
+:root {
+  /* Colors - Dark Mode */
+  --bg: #05070f;
+  /* derive gradients from primary */
+  --bg-gradient-start: color-mix(in srgb, var(--primary, #5b8cff) 22%, #05090c);
+  --bg-gradient-end: color-mix(in srgb, var(--primary, #5b8cff) 6%, #0c1622);
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+  --glass-bg-strong: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-border-strong: rgba(255, 255, 255, 0.28);
+  --glass-highlight: rgba(255, 255, 255, 0.35);
+  --glass-glow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  /* app background now follows --primary */
+  --app-background:
+    radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--primary,) 35%, transparent), transparent 52%),
+    radial-gradient(circle at 88% 14%, color-mix(in srgb, var(--primary, ) 24%, transparent), transparent 58%),
+    linear-gradient(140deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  /* derived tones from a single primary */
+  --tone-0: color-mix(in srgb, var(--primary, #5b8cff) 10%, black);
+  --tone-1: color-mix(in srgb, var(--primary, #5b8cff) 20%, black);
+  --tone-2: color-mix(in srgb, var(--primary, #5b8cff) 35%, black);
+  --tone-3: color-mix(in srgb, var(--primary, #5b8cff) 55%, black);
+  --tone-4: color-mix(in srgb, var(--primary, #5b8cff) 72%, black);
+  --tone-5: color-mix(in srgb, var(--primary, #5b8cff) 88%, white 12%);
+  --tone-6: color-mix(in srgb, var(--primary, #5b8cff) 70%, white 45%);
+  --panel: #0f1117;
+  --bg-secondary: #1a1f2e;
+  --bg-tertiary: #14181f;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text: #e8e8f0;
+  --text-primary: #e8e8f0;
+  --text-secondary: #a0a3ad;
+  --text-disabled: #6b7280;
+  --muted: #6b7280;
+  
+  /* Brand Colors */
+  --brand: #5b8cff;
+  --brand-strong: #4278d1;
+  --brand2: #a06bff;
+  --brand-light: rgba(91, 140, 255, 0.1);
+  --primary: #5b8cff;
+  --primary-strong: #4278d1;
+  --primary-soft: #8db6ff;
+  --primary-dark: #4573ff;
+  --primary-light: rgba(91, 140, 255, 0.1);
+  --accent-cta: #4278d1;
+  
+  /* Secondary Colors */
+  --secondary: #a06bff;
+  --secondary-dark: #8c52ff;
+  
+  
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.4);
+  
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  
+  /* Typography */
+  --font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 15px;
+  --font-size-xl: 16px;
+  --font-size-2xl: 18px;
+  --font-size-3xl: 24px;
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-tooltip: 1050;
+}
+
+/* Reset rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styles */
+html,
+body,
+#root {
+  min-height: 100%;
+  background: var(--app-background) !important;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  color: var(--text);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+
+/* Code elements */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Main app container */
+.app {
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var(--text);
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--brand2);
+}
+
+/* Lists */
+ul, ol {
+  margin-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-xl);
+}
+
+li {
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Placeholder text color */
+::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+/* Disable Tailwind's backdrop-blur-2xl so it doesn't force heavy blur */
+.backdrop-blur-2xl {
+  --tw-backdrop-blur: none !important;
+  --tw-backdrop-brightness: initial;
+  --tw-backdrop-contrast: initial;
+  --tw-backdrop-saturate: initial;
+  --tw-backdrop-hue-rotate: initial;
+  --tw-backdrop-invert: initial;
+  --tw-backdrop-grayscale: initial;
+  --tw-backdrop-sepia: initial;
+  --tw-backdrop-opacity: initial;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* === Minimal utility shim (Tailwind import nélkül) === */
+.flex { display: flex; }
+.grid { display: grid; }
+.hidden { display: none; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-6 { gap: 24px; }
+.gap-10 { gap: 32px; }
+.gap-12 { gap: 48px; }
+.space-y-2 > * + * { margin-top: 8px; }
+.space-y-3 > * + * { margin-top: 12px; }
+.space-y-4 > * + * { margin-top: 16px; }
+.space-y-6 > * + * { margin-top: 24px; }
+.space-y-8 > * + * { margin-top: 32px; }
+.space-y-10 > * + * { margin-top: 40px; }
+.space-y-12 > * + * { margin-top: 48px; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.min-h-screen { min-height: 100vh; }
+.p-4 { padding: 16px; }
+.p-6 { padding: 24px; }
+.px-3 { padding-left: 12px; padding-right: 12px; }
+.px-4 { padding-left: 16px; padding-right: 16px; }
+.py-2 { padding-top: 8px; padding-bottom: 8px; }
+.py-4 { padding-top: 16px; padding-bottom: 16px; }
+.rounded-xl { border-radius: 20px; }
+.rounded-2xl { border-radius: 28px; }
+.rounded-3xl { border-radius: 36px; }
+.rounded-full { border-radius: 9999px; }
+.text-white { color: #f5f7fb; }
+.text-slate-200 { color: #e2e8f0; }
+.text-slate-900 { color: #0f172a; }
+.bg-slate-950 { background: #020510; }
+.bg-white\/10 { background: rgba(255,255,255,0.1); }
+.bg-white\/15 { background: rgba(255,255,255,0.15); }
+.border { border: 1px solid rgba(255,255,255,0.12); }
+.border-white\/10 { border: 1px solid rgba(255,255,255,0.1); }
+.border-white\/15 { border: 1px solid rgba(255,255,255,0.15); }
+.shadow-lg { box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+.drop-shadow { filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35)); }
+.animate-spin { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* === Erős, egységes glass-hatás kártyákra === */
+.kpi-card,
+.chart-card,
+.insight-card,
+.glass-panel,
+.panel,
+.list-row,
+.visualize-cell,
+.notification-row,
+.snapshot-item,
+.queue-modal,
+.queue-row,
+.overlay-list-row,
+.meta-chip,
+.card {
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border-strong);
+  border-radius: 24px;
+  box-shadow:
+    0 24px 60px rgba(4, 8, 16, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::after,
+.kpi-card::after,
+.chart-card::after,
+.insight-card::after,
+.glass-panel::after,
+.panel::after,
+.list-row::after,
+.visualize-cell::after,
+.notification-row::after,
+.snapshot-item::after,
+.queue-modal::after,
+.queue-row::after,
+.overlay-card::after,
+.overlay-list-row::after,
+.meta-chip::after,
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.14), transparent 60%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.glass-card:hover,
+.kpi-card:hover,
+.chart-card:hover,
+.insight-card:hover,
+.panel:hover,
+.list-row:hover,
+.visualize-cell:hover,
+.notification-row:hover,
+.snapshot-item:hover {
+  box-shadow:
+    0 30px 70px rgba(4, 8, 16, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border-color: rgba(255, 255, 255, 0.3);
+}

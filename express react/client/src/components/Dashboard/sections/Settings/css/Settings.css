@@ -1,0 +1,254 @@
+/* components/Dashboard/sections/Settings/Settings.css */
+.settings-container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  min-height: 600px;
+  color: var(--text);
+}
+
+.settings-sidebar {
+  background: var(--glass-bg);
+  border-radius: 26px;
+  padding: 1.75rem;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(26px);
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.settings-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.settings-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-align: left;
+  border: 1px solid transparent;
+  box-shadow: 0 12px 24px rgba(4, 8, 14, 0.25);
+}
+
+.settings-nav-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+}
+
+.settings-nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--text);
+}
+
+.settings-nav-item.active {
+  background: rgba(122, 122, 122, 0.9);
+  color: #f5f7fb;
+  font-weight: 700;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.settings-content {
+  background: var(--glass-bg);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(28px);
+}
+
+/* Reszponzív design */
+@media (max-width: 768px) {
+  .settings-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .settings-sidebar {
+    position: static;
+    padding: 1rem;
+  }
+  
+  .settings-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.25rem;
+  }
+  
+  .settings-nav-item {
+    white-space: nowrap;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Közös form stílusok */
+.settings-card {
+  max-width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 1.5rem;
+  box-shadow: 0 20px 45px rgba(5, 8, 12, 0.4);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  background: rgba(5, 12, 18, 0.65);
+  color: var(--text);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: rgba(111, 208, 255, 0.65);
+  box-shadow: 0 0 0 3px rgba(111, 208, 255, 0.18);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.disabled-input {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 0.25rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Üzenet stílusok */
+.message {
+  padding: 1rem;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.message.success {
+  background: rgba(90, 200, 250, 0.1);
+  border-color: rgba(90, 200, 250, 0.4);
+  color: #9fe6ff;
+}
+
+.message.error {
+  background: rgba(255, 120, 120, 0.12);
+  border-color: rgba(255, 120, 120, 0.4);
+  color: #ffbac1;
+}
+
+/* Gomb stílusok */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: #5ac8fa;
+  color: white;
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: #45b8e9;
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  background: #6b7280;
+  color: white;
+}
+
+.btn.secondary:hover:not(:disabled) {
+  background: #4b5563;
+}
+
+.btn.danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.btn.ghost:hover:not(:disabled) {
+  background: #f9fafb;
+  color: #374151;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
